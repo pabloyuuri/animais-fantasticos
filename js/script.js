@@ -5,7 +5,7 @@ import TabNav from './modules/tabnav.js';
 import Tooltip from './modules/tooltip.js';
 import Modal from './modules/modal.js';
 import DropDownMenu from './modules/dropdown-menu.js';
-import initMenuMobile from './modules/menu-mobile.js';
+import MenuMobile from './modules/menu-mobile.js';
 import initFuncionamento from './modules/funcionamento.js';
 import fetchAnimais from './modules/fetch-animais.js';
 import fetchBitcoin from './modules/fetch-bitcoin.js';
@@ -31,8 +31,10 @@ scrollAnima.init();
 const dropDownMenu = new DropDownMenu('[data-dropdown]', ['touchstart', 'click']);
 dropDownMenu.init();
 
+const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', ['click', 'touchstart']);
+menuMobile.init();
+
 initFuncionamento();
-initMenuMobile();
 
 fetchAnimais('./js/animaisapi.json', '.numeros-grid');
 fetchBitcoin('https://blockchain.info/ticker', '.btc-preco');
