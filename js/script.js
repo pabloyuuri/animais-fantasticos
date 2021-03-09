@@ -35,7 +35,6 @@ const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', 
 menuMobile.init();
 
 const horarioFuncionamento = new HorarioFuncionamento('[data-semana]', 'aberto');
-console.log(horarioFuncionamento);
 horarioFuncionamento.init();
 
 fetchAnimais('./js/animaisapi.json', '.numeros-grid');
