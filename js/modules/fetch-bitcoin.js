@@ -1,4 +1,8 @@
 export default function fetchBitcoin(url, target) {
+<<<<<<< HEAD
+=======
+  console.log('teste');
+>>>>>>> master
   fetch(url)
     .then((response) => response.json())
     .then((json) => {
