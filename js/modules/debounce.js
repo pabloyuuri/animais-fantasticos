@@ -1,11 +1,9 @@
 export default function debounce(callback, delay) {
   let timer;
   return (...args) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      callback(...args); // console.log - da function onScroll
+      callback(...args);
       timer = null;
     }, delay);
   };

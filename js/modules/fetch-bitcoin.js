@@ -1,10 +1,8 @@
 export default function fetchBitcoin(url, target) {
   fetch(url)
-    .then((response) => response.json())
-    .then((json) => {
-      const spanValor = document.querySelector(target);
-      spanValor.innerText = (1000 / json.BRL.sell).toFixed(4);
-    }).catch((error) => {
-      console.log(Error(error));
-    });
+    .then(response => response.json())
+    .then((bitcoin) => {
+      const btcPreco = document.querySelector(target);
+      btcPreco.innerText = (1000 / bitcoin.BRL.sell).toFixed(4);
+    }).catch(erro => console.log(Error(erro)));
 }

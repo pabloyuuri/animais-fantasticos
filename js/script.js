@@ -1,20 +1,20 @@
 import ScrollSuave from './modules/scroll-suave.js';
-import ScrollAnima from './modules/scroll-anima.js';
 import Accordion from './modules/accordion.js';
 import TabNav from './modules/tabnav.js';
-import Tooltip from './modules/tooltip.js';
 import Modal from './modules/modal.js';
-import DropDownMenu from './modules/dropdown-menu.js';
+import Tooltip from './modules/tooltip.js';
+import DropdownMenu from './modules/dropdown-menu.js';
 import MenuMobile from './modules/menu-mobile.js';
-import HorarioFuncionamento from './modules/funcionamento.js';
+import Functionamento from './modules/funcionamento.js';
 import fetchAnimais from './modules/fetch-animais.js';
 import fetchBitcoin from './modules/fetch-bitcoin.js';
+import ScrollAnima from './modules/scroll-anima.js';
 
 const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
 scrollSuave.init();
 
-const accordionList = new Accordion('[data-anime="accordion"] dt');
-accordionList.init();
+const accordion = new Accordion('[data-anime="accordion"] dt');
+accordion.init();
 
 const tabNav = new TabNav('[data-tab="menu"] li', '[data-tab="content"] section');
 tabNav.init();
@@ -28,14 +28,15 @@ tooltip.init();
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
 
-const dropDownMenu = new DropDownMenu('[data-dropdown]', ['touchstart', 'click']);
-dropDownMenu.init();
+const dropdownMenu = new DropdownMenu('[data-dropdown]');
+dropdownMenu.init();
 
-const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', ['click', 'touchstart']);
+const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]');
 menuMobile.init();
 
-const horarioFuncionamento = new HorarioFuncionamento('[data-semana]', 'aberto');
-horarioFuncionamento.init();
+const funcionamento = new Functionamento('[data-semana]', 'aberto');
+funcionamento.init();
 
-fetchAnimais('./js/animaisapi.json', '.numeros-grid');
+fetchAnimais('./animaisapi.json', '.numeros-grid');
+
 fetchBitcoin('https://blockchain.info/ticker', '.btc-preco');
