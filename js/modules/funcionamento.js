@@ -1,17 +1,40 @@
-export default function initFuncionamento() {
-  const funcionamento = document.querySelector('[data-semana]');
-  const diasSemana = funcionamento.dataset.semana.split(',').map(Number); // split transforma string em uma array. e map transforma string em number
-  const horarioSemana = funcionamento.dataset.horario.split(',').map(Number); // split transforma string em uma array. e map transforma string em number
-  if (funcionamento && diasSemana && horarioSemana) {
-    const dataAgora = new Date();
-    const diaAgora = dataAgora.getDay();
-    const horarioAgora = dataAgora.getHours();
+export default class HorarioFuncionamento {
+  constructor(funcionamento, activeClass) {
+    this.funcionamento = document.querySelector(funcionamento);
+    this.activeClass = activeClass;
+  }
 
-    const semanaAberto = diasSemana.indexOf(diaAgora) !== -1;
-    const horarioAberto = (horarioAgora >= horarioSemana[0] && horarioAgora < horarioSemana[1]);
+  dadosFuncionamento() {
+    this.diasSemana = this.funcionamento.dataset.semana.split(',').map(Number); // split transforma string em uma array. e map transforma string em number
+    this.horarioSemana = this.funcionamento.dataset.horario.split(',').map(Number); // split transforma string em uma array. e map transforma string em number
+  }
 
-    if (semanaAberto && horarioAberto) {
-      funcionamento.classList.add('aberto'); // const agora = new Date(); console.log(agora);
+  dadosAgora() {
+    this.dataAgora = new Date();
+    this.diaAgora = this.dataAgora.getDay();
+    this.horarioAgora = this.dataAgora.getUTCHours() - 3;
+  }
+
+  estarAberto() {
+    const semanaAberto = this.diasSemana.indexOf(this.diaAgora) !== -1;
+    const horarioAberto = (this.horarioAgora >= this.horarioSemana[0]
+      && this.horarioAgora < this.horarioSemana[1]);
+
+    return semanaAberto && horarioAberto;
+  }
+
+  ativaAberto() {
+    if (this.estarAberto()) {
+      this.funcionamento.classList.add(this.activeClass);
     }
+  }
+
+  init() {
+    if (this.funcionamento) {
+      this.dadosFuncionamento();
+      this.dadosAgora();
+      this.ativaAberto();
+    }
+    return this;
   }
 }
