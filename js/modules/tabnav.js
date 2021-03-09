@@ -5,28 +5,27 @@ export default class TabNav {
     this.activeClass = 'ativo';
   }
 
-  // ativa a tab de acordo com o index da mesma
+  // Ativa a tab de acordo com o index da mesma
   activeTab(index) {
-    this.tabContent.forEach((item) => {
-      item.classList.remove(this.activeClass);
+    this.tabContent.forEach((section) => {
+      section.classList.remove(this.activeClass);
     });
-    this.tabContent[index].classList.add(this.activeClass, this.tabContent[index].dataset.anime);
+    const direcao = this.tabContent[index].dataset.anime;
+    this.tabContent[index].classList.add(this.activeClass, direcao);
   }
 
-  // adiciona os eventos na tab
-  addTabNevEvent() {
-    this.tabMenu.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        this.activeTab(index); // posição do item-elemento.
-      });
+  // Adiciona os eventos nas tabs
+  addTabNavEvent() {
+    this.tabMenu.forEach((itemMenu, index) => {
+      itemMenu.addEventListener('click', () => this.activeTab(index));
     });
   }
 
   init() {
-    if (this.tabContent.length && this.tabMenu.length) {
-      // adiciona primeira tab.
+    if (this.tabMenu.length && this.tabContent.length) {
+      // ativar primeiro item
       this.activeTab(0);
-      this.addTabNevEvent();
+      this.addTabNavEvent();
     }
     return this;
   }
