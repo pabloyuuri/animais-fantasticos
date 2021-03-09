@@ -1,4 +1,5 @@
 export default function fetchBitcoin(url, target) {
+  console.log('teste');
   console.log('teste12323');
   fetch(url)
     .then((response) => response.json())
@@ -8,4 +9,6 @@ export default function fetchBitcoin(url, target) {
     }).catch((error) => {
       console.log(Error(error));
     });
+
+  console.log('testando');
 }
